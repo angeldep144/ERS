@@ -1,19 +1,30 @@
-window.onload(e) = async () => {
-    let response = await fetch("http://localhost:9000/api/check-session");
+let domain = "http://localhost:9000";
+
+window.addEventListener("load", async () => {
+    console.log('in check-session');
+    let response = await fetch(`${domain}/ers/check-session`);
     let result = await response.json();
 
+    console.log(result.successful);
+
     if(result.successful){
-        window.location.href = `${result.data.role_id}-dashboard`
+        window.location.href = `./${result.data.role}-dashboard`
     }
-}
+})
 
 async function login(e){
     e.preventDefault(); // this prevent form onsubmit from refreshing
 
-    let usernamInputElem = document.getElementById("username-input");
+    let usernameInputElem = document.getElementById("username-input");
     let passwordInputElem = document.getElementById("password-input");
 
-    let response = await fetch("http://localhost:9000/api/login", {
+    console.log(usernameInputElem);
+    console.log(passwordInputElem);
+
+    console.log(`username: ${usernameInputElem.value}`);
+    console.log(`password: ${passwordInputElem.value}`);
+
+    let response = await fetch(`${domain}/ers/login`, {
         method: "POST",
         body: JSON.stringify({
             username: usernameInputElem.value,
@@ -26,8 +37,9 @@ async function login(e){
     // define what role id is: 1 for employee and 2 for manager
 
     if(result.successful){
-       window.location.href = `${result.data.role_id}-dashboard`
+       window.location.href = `./${result.data.role.toLowerCase()}-dashboard`
     } else {
-        // display some kind of alert for unsuccessful login
+        console.log("Unsuccessful login");
+        alert("Wrong username or password")
     }
 }

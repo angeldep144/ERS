@@ -1,24 +1,20 @@
 package models;
 
 public class JsonResponse {
-    Boolean isSuccessful;
-    String message;
+    Boolean successful;
     Object data;
 
+    public JsonResponse(Boolean successful, Object data) {
+        this.successful = successful;
+        this.data = data;
+    }
+
     public Boolean getSuccessful() {
-        return isSuccessful;
+        return successful;
     }
 
     public void setSuccessful(Boolean successful) {
-        isSuccessful = successful;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+        successful = successful;
     }
 
     public Object getData() {
@@ -32,8 +28,7 @@ public class JsonResponse {
     @Override
     public String toString() {
         return "JsonResponse{" +
-                "isSuccessful=" + isSuccessful +
-                ", message='" + message + '\'' +
+                "successful=" + successful +
                 ", data=" + data +
                 '}';
     }

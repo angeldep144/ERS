@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1" id="name"></span>
+      <button class="btn btn-outline-danger" onclick="logout(event)">Logout</button>
+    </div>
+  </nav>
+
+  <br>
+
+  <table class="table table-dark table-hover table table-sm" id="reimb-table">
+    <h3>Past Reimbursement Requests</h3>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Submitted</th>
+        <th scope="col">Employee</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+        <th scope="col">Status</th>
+        <th scope="col">Description</th>
+        <th scope="col">Receipt</th>
+        <th scope="col">Resolved by</th>
+      </tr>
+    </thead>
+    <tbody id="reimb-tbody">
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <div id="form-container">
+    <div class="request-header">
+      <h3>Submit New Reimbursement Request</h3>
+      <p id="request-description"> To receive reimbursements under the reimbursement arrangement, employees
+must submit expense reports with any necessary receipts to the employer within 30
+days after returning from a business trip or incurring a travel or entertainment expense,
+but no later than 60 days after incurring the expense. Once the employer approves an
+employee’s travel and entertainment expense report, the employer sends payment
+directly to the credit card company for the business expenses listed in the report. The
+employer does not reimburse any charges made to the employee’s business credit card
+that are not listed in the expense report approved by the employer. The employer treats 
+the reimbursement of any nondeductible business expenses as wages paid to the
+employee and does not reimburse personal expenses.
+      </p>
+    </div>
+    <form id="usrform" onsubmit="createReimbursement()">
+
+      <span class="input-type">
+        <div class="input-pair">
+          <p class="input-label">Amount:</p>
+        <input type="number" id="reimb-amount" placeholder="$ Amount" required>
+        </div>
+
+        <div class="input-pair">
+          <p class="input-label">Type:</p>
+        <select id="reimb-type" name="type">
+          <option value="1">Lodging</option>
+          <option value="2">Travel</option>
+          <option value="3">Food</option>
+          <option value="4">Other</option>
+        </select>
+        </div>
+
+        <textarea name="comment" id="reimb-description" maxlength="150" rows="3" cols="60" form="usrform" placeholder="Briefly explain the nature of this reimbursement request"></textarea>
+
+        <div id="input-pair">
+          <p class="input-label">Upload a photo of your receipt (optional)</p>
+          <input type="file" id="reimb-receipt" name="filename">
+        </div>
+      </span>
+
+      <input type="submit" value="Submit Request">
+    
+      </form>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

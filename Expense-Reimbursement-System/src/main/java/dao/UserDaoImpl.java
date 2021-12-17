@@ -162,4 +162,32 @@ public class UserDaoImpl implements UserDao {
 
         return Boolean.FALSE;
     }
+
+    @Override
+    public User login(String ers_username, String ers_password) {
+        User user = null;
+
+        try(Connection conn = DriverManager.getConnection(url, username, password)){ //try with resources
+
+            String sql = "SELECT * FROM ers_users WHERE ers_username = ? AND ers_password = ?;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, ers_username);
+            ps.setString(2, ers_password);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),
+                        rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getInt(7));
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            logger.error(e);
+        }
+
+        return user;
+    }
 }

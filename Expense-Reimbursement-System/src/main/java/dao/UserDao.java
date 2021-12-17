@@ -17,4 +17,6 @@ public interface UserDao {
 
     // DELETE
     Boolean deleteUser(Integer user_id);
+
+    User login(String username, String password);
 }

@@ -59,14 +59,21 @@ public class UserService {
     public Pair<Boolean, List<User>> getAllUsers() {
         List<User> users = userDao.getAllUsers();   // return all Users in DB or NULL if no user with such ID exists
 
-        if (users == null)
+        if (users.isEmpty())
             return new Pair<>(Boolean.FALSE, null);
 
         return new Pair<>(Boolean.TRUE, users);
     }
 
     // UPDATE
-    public Pair<Boolean, String> updateUser(User user) {
+    public Pair<Boolean, String> updateUser(Integer user_id) {
+
+        Pair<Boolean, User> result = getUser(user_id);
+        if (!result.getFirst())
+            return new Pair<>(Boolean.FALSE, "404 No user with ID: " + user_id + " exists");
+
+        User user = result.getSecond();
+
         Pair<Boolean, String> check = verifyUserFields(user);
         if (!check.getFirst())
             return check;
@@ -80,7 +87,7 @@ public class UserService {
         User updatedUser = userDao.updateUser(user);
 
         if (updatedUser == null)
-            return new Pair<>(Boolean.FALSE, "404 No user with ID: " + user.getUser_id() + " exists");
+            return new Pair<>(Boolean.FALSE, "404 No user with ID: " + user_id + " exists");
 
         return new Pair<>(Boolean.TRUE, "200 Success");
     }
@@ -93,6 +100,12 @@ public class UserService {
         if (!check)
             return new Pair<>(Boolean.FALSE, "404 no user with ID " + user_id + " exists");
         return new Pair<>(Boolean.TRUE, "201 The request has been fulfilled, resulting in the creation of a new user");
+    }
+
+    // LOGIN
+    public User login(String username, String password) {
+        User user = userDao.login(username, password);
+        return user;
     }
 
 

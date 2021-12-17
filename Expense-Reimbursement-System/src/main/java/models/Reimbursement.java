@@ -1,25 +1,27 @@
 package models;
 
-import java.awt.image.BufferedImage;
-import java.sql.Date;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Reimbursement {
+
     private Integer reimb_id;
     private Double amount;
-    private Date date_submitted;
-    private Date date_resolved;
+    private Timestamp date_submitted;
+    private Timestamp date_resolved;
     private String description;
-    private BufferedImage receipt;
-
+    private byte[] receipt;
     private Integer author_id;      // user who sent reimbursement request
-    private Integer resolver_id;    // user who resolves reimbursement request
-    private Integer status_id;      // status of reimbursement from predefined table 0: PENDING, 1: APPROVED, 2: RESOLVED
+    private Integer resolver_id = 0;    // user who resolves reimbursement request
+    private Integer status_id = 0;      // status of reimbursement from predefined table 0: PENDING, 1: APPROVED, 2: RESOLVED
     private Integer type_id;        // "reasons for reimbursement" from predefined table
 
     public Reimbursement(){}
-    public Reimbursement(Integer reimb_id, Double amount, Date submitted,
-                            Date resolved, String description, BufferedImage receipt,
-                                Integer author_id, Integer resolver_id, Integer status_id, Integer type_id) {
+    public Reimbursement(Integer reimb_id, Double amount, Timestamp submitted,
+                         Timestamp resolved, String description, byte[] receipt,
+                         Integer author_id, Integer resolver_id, Integer status_id, Integer type_id) {
 
         this.reimb_id = reimb_id;
         this.amount = amount;
@@ -49,19 +51,19 @@ public class Reimbursement {
         this.amount = amount;
     }
 
-    public Date getDate_submitted() {
+    public Timestamp getDate_submitted() {
         return date_submitted;
     }
 
-    public void setDate_submitted(Date date_submitted) {
+    public void setDate_submitted(Timestamp date_submitted) {
         this.date_submitted = date_submitted;
     }
 
-    public Date getDate_resolved() {
+    public Timestamp getDate_resolved() {
         return date_resolved;
     }
 
-    public void setDate_resolved(Date date_resolved) {
+    public void setDate_resolved(Timestamp date_resolved) {
         this.date_resolved = date_resolved;
     }
 
@@ -73,11 +75,11 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public BufferedImage getReceipt() {
+    public byte[] getReceipt() {
         return receipt;
     }
 
-    public void setReceipt(BufferedImage receipt) {
+    public void setReceipt(byte[] receipt) {
         this.receipt = receipt;
     }
 

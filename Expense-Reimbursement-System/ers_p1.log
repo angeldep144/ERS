@@ -8,3 +8,15 @@
   Position: 15
 2021-12-07 04:28:51 ERROR UserDaoImpl:51 - org.postgresql.util.PSQLException: ERROR: value too long for type character varying(50)
 2021-12-07 04:29:19 ERROR UserDaoImpl:51 - org.postgresql.util.PSQLException: ERROR: value too long for type character varying(50)
+2021-12-12 19:08:58 ERROR UserDaoImpl:188 - org.postgresql.util.PSQLException: FATAL: password authentication failed for user "kchilds"
+2021-12-12 19:11:31 ERROR UserDaoImpl:188 - org.postgresql.util.PSQLException: FATAL: password authentication failed for user "adept"
+2021-12-16 19:58:53 ERROR ReimbursementDaoImpl:127 - org.postgresql.util.PSQLException: ERROR: column "ers_user_id" does not exist
+  Position: 40
+2021-12-16 20:04:15 ERROR ReimbursementDaoImpl:127 - org.postgresql.util.PSQLException: ERROR: column "ers_user_id" does not exist
+  Position: 40
+2021-12-16 20:05:49 ERROR ReimbursementDaoImpl:127 - org.postgresql.util.PSQLException: ERROR: column "ers_user_id" does not exist
+  Position: 40
+2021-12-16 20:13:17 ERROR ReimbursementDaoImpl:127 - org.postgresql.util.PSQLException: ERROR: column "ers_author" does not exist
+  Position: 40
+2021-12-17 04:12:20 ERROR ReimbursementDaoImpl:148 - org.postgresql.util.PSQLException: No results were returned by the query.
+2021-12-17 04:12:44 ERROR ReimbursementDaoImpl:148 - org.postgresql.util.PSQLException: No results were returned by the query.

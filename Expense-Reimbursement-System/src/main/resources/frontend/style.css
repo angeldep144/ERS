@@ -1,0 +1,33 @@
+body {
+    background-image: url("./img/ers-bg.png");
+    background-color: #6c3dc4;
+}
+
+#login-container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 15%;
+}
+
+#form-container{
+    margin: 50px;
+    
+}
+
+input {
+    height: 35px;
+    border-radius: 8px;
+}
+
+h3 {
+    color: rgb(219, 219, 60);
+    text-align: center;
+    opacity: 1.0 !important;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.donate {
+    height: 60px;
+    width: 110px;
+}
