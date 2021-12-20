@@ -34,24 +34,7 @@
       </tr>
     </thead>
     <tbody id="reimb-tbody">
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      
     </tbody>
   </table>
 
@@ -59,7 +42,7 @@
 
   <div id="form-container">
     <div class="request-header">
-      <h3>Submit New Reimbursement Request</h3>
+      <h3>Submit A New Reimbursement Request</h3>
       <p id="request-description"> To receive reimbursements under the reimbursement arrangement, employees
 must submit expense reports with any necessary receipts to the employer within 30
 days after returning from a business trip or incurring a travel or entertainment expense,
@@ -76,29 +59,32 @@ employee and does not reimburse personal expenses.
 
       <span class="input-type">
         <div class="input-pair">
-          <p class="input-label">Amount:</p>
-        <input type="number" id="reimb-amount" placeholder="$ Amount" required>
+          <span class="input-group-text" id="dollar-sign">$</span>
+          <input type="number" step="0.01" min=0 id="reimb-amount" placeholder="Amount" required>
         </div>
 
         <div class="input-pair">
-          <p class="input-label">Type:</p>
+          <span class="input-group-text" id="dollar-sign">Type</span>
         <select id="reimb-type" name="type">
-          <option value="1">Lodging</option>
-          <option value="2">Travel</option>
-          <option value="3">Food</option>
-          <option value="4">Other</option>
+          <option value=1>Lodging</option>
+          <option value=2>Travel</option>
+          <option value=3>Food</option>
+          <option value=4>Other</option>
         </select>
         </div>
 
-        <textarea name="comment" id="reimb-description" maxlength="150" rows="3" cols="60" form="usrform" placeholder="Briefly explain the nature of this reimbursement request"></textarea>
+        <textarea name="comment" id="reimb-description" maxlength="150" cols="75" form="usrform" placeholder="Briefly explain the nature of this reimbursement request"></textarea>
 
         <div id="input-pair">
           <p class="input-label">Upload a photo of your receipt (optional)</p>
+          <p class="coming-soon-label">Coming soon!</p>
           <input type="file" id="reimb-receipt" name="filename">
         </div>
       </span>
 
-      <input type="submit" value="Submit Request">
+      <div class="submit-btn-container">
+        <button type="submit" class="btn btn-success" id="submit-btn">Submit</button>
+      </div>
     
       </form>
   </div>

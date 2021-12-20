@@ -12,12 +12,13 @@ window.onload = async () => {
     if(result.data.role === "MANAGER")
         window.location.href = "../manager-dashboard"
 
-    // add username and role to screen
+    // add name to nav-bar
     let userElem = document.getElementById('name')
     userElem.innerText = `Welcome, ${result.data.name}`;
 
 
     populateReimbursements();
+    populateReimbursements2();
 }
 
 async function populateReimbursements(){
@@ -36,9 +37,10 @@ async function populateReimbursements(){
             <td class="reimb-author">${reimb.author}</td>
             <td class="reimb-amount">$${reimb.amount}</td>
             <td class="reimb-type">${reimb.type}</td>
-            <td class="reimb-status">${reimb.status}</td>
 
             <td class="reimb-description">${reimb.description == null ? "-" : reimb.description}</td>
+
+            <td class="reimb-status">${reimb.status}</td>
 
             <td class="reimb-receipt">${reimb.receipt == null ? "-" : `<img src= ${reimb.receipt} />`}</td>
             
@@ -52,44 +54,76 @@ async function populateReimbursements(){
     });
 }
 
+async function populateReimbursements2(){
+    let response = await fetch(`${domain}/ers/reimb/decided`);
+    let data = await response.json();
+
+    let reimbTableBody = document.getElementById('reimb-tbody-all')
+    reimbTableBody.innerHTML = "";
+
+    data.forEach(reimb => {
+        reimbTableBody.innerHTML += `
+        <tr class="reimbursement" id="${reimb.id}-decided">
+
+            <th scope="row" value="@item.QueueName">${reimb.id}</th>
+            <td class="time-submitted">${reimb.submitted}</td>
+            <td class="reimb-author">${reimb.author}</td>
+            <td class="reimb-amount">$${reimb.amount}</td>
+            <td class="reimb-type">${reimb.type}</td>
+            <td class="reimb-description">${reimb.description == null ? "-" : reimb.description}</td>
+            <td class="reimb-status-${reimb.status == "APPROVED" ? 1 : 2}">${reimb.status}</td>
+            <td class="reimb-resolver">${reimb.resolver == null ? "-" : reimb.resolver}</td>
+        </tr>
+        `
+    });
+}
+
 async function approve(e) {
     let response = await fetch("http://localhost:9000/ers/check-session");
     let result = await response.json();
 
-    let resolver = result.data.id; // resolver id gotten from current session
-    let id = e.target.id.slice("approve-btn-".length,e.target.id.length) // id of reimbursement gotten from button
-    console.log('alleged button id: ' + id);
+    let _resolver_id = result.data.id; // resolver id gotten from current session
 
-    await fetch(`${domain}/ers/reimb/${id}`,{
+    let _reimb_id = e.target.id.slice("approve-btn-".length,e.target.id.length) // id of reimbursement gotten from button
+    
+    // debugging
+    console.log('Approving reimbursement request with ID: ' + _reimb_id);
+
+    await fetch(`${domain}/ers/reimb/${_reimb_id}`,{
         method: "PATCH",
         body: JSON.stringify({
-            reimb_id: id,
+            reimb_id: _reimb_id,
             status_id: 1,
-            resolver_id: resolver
+            resolver_id: _resolver_id
         })
     })
 
     populateReimbursements();
+    populateReimbursements2();
 }
 
 async function reject(e) {
     let response = await fetch("http://localhost:9000/ers/check-session");
     let result = await response.json();
 
-    let resolver  = result.data.id; // resolver id gotten from current session
-    let id = e.target.id.slice("reject-btn-".length,e.target.id.length) // id of reimbursement gotten from button
-    console.log('alleged button id: ' + id);
+    let _resolver_id = result.data.id; // resolver id gotten from current session
 
-    await fetch(`${domain}/ers/reimb/${id}`,{
+    let _reimb_id = e.target.id.slice("reject-btn-".length,e.target.id.length) // id of reimbursement gotten from button
+    
+    // debugging
+    console.log('Rejecting reimbursement request with ID: ' + _reimb_id);
+
+    await fetch(`${domain}/ers/reimb/${_reimb_id}`,{
         method: "PATCH",
         body: JSON.stringify({
-            reimb_id: id,
+            reimb_id: _reimb_id,
             status_id: 2,
-            resolver_id: resolver
+            resolver_id: _resolver_id
         })
     })
 
     populateReimbursements();
+    populateReimbursements2();
 }
 
 
@@ -106,14 +140,15 @@ async function logout(e){
   document.write("img src="+img+">");
 } */
 
-function show_image(event) {
+// **********************************************************************
+
+/* function show_image(event) {
  
-    /* Access image by id and change
-    the display property to block*/
+    // Access image by id and change the display property to block
 
     document.getElementById('image')
             .style.display = "block";
 
     document.getElementById('img-btn')
             .style.display = "none";
-}
+} */

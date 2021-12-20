@@ -1,16 +1,17 @@
-package pom;
+package test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ErsPOM {
+public class Ers {
 
     WebDriver driver;
     Wait<WebDriver> wait;
@@ -18,9 +19,7 @@ public class ErsPOM {
     WebElement inputElem;
     WebElement btn;
 
-    By loginBtnSelector = By.className("btn btn-primary");
-
-    public ErsPOM(WebDriver driver){
+    public Ers(WebDriver driver){
         this.driver = driver;
         this.wait = new FluentWait<>(this.driver)
                 .withTimeout(Duration.ofSeconds(5))
@@ -41,5 +40,23 @@ public class ErsPOM {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
+
+    public void submitReimbursement(Double amount){
+
+        inputElem = driver.findElement(By.id("reimb-amount"));
+        inputElem.sendKeys(amount.toString());
+
+        Select select = new Select(driver.findElement(By.id("reimb-type")));
+        select.selectByIndex(1);
+
+        inputElem = driver.findElement(By.id("reimb-description"));
+        inputElem.sendKeys("This is the description for why I need this reimbursement approved");
+
+        btn = driver.findElement(By.id("submit-btn"));
+        btn.click();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
 }
+
 

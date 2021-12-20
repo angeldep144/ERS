@@ -2,7 +2,6 @@ package controllers;
 
 import io.javalin.http.Context;
 import kotlin.Pair;
-import models.JsonResponse;
 import models.Reimbursement;
 import models.ReimbursementDTO;
 import services.ReimbursementService;
@@ -30,9 +29,21 @@ public class ReimbursementController {
 
         if(!reimbList.getFirst()) {
             context.status(404);
+        } else {
+            context.json(reimbList.getSecond());
         }
+    }
 
-        context.json(reimbList.getSecond());
+    public void getPastReimbursements(Context context) {
+        context.contentType("application/json");
+
+        Pair<Boolean, List<ReimbursementDTO>> reimbList = reimbService.getPastReimbursements();
+
+        if(!reimbList.getFirst()) {
+            context.status(404);
+        } else {
+            context.json(reimbList.getSecond());
+        }
     }
 
     public void getUserReimbursements(Context context) {
@@ -43,9 +54,9 @@ public class ReimbursementController {
 
         if(!reimbList.getFirst()) {
             context.status(404);
+        } else {
+            context.json(reimbList.getSecond());
         }
-
-        context.json(reimbList.getSecond());
     }
 
     public void updateReimbursement(Context context) {

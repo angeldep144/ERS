@@ -1,11 +1,11 @@
 package models;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Reimbursement {
+
+    private File img;
 
     private Integer reimb_id;
     private Double amount;
@@ -33,6 +33,14 @@ public class Reimbursement {
         this.resolver_id = resolver_id;
         this.status_id = status_id;
         this.type_id = type_id;
+    }
+
+    public File getImg() {
+        return img;
+    }
+
+    public void setImg(File img) {
+        this.img = img;
     }
 
     public Integer getReimb_id() {

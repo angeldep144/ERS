@@ -11,6 +11,7 @@ public interface ReimbursementDao {
     // READ
     Reimbursement getReimbursement(Integer reimb_id);
     List<Reimbursement> getAllReimbursements();
+    List<Reimbursement> getPastReimbursements();
     List<Reimbursement> getUserReimbursements(Integer user_id);
 
     // UPDATE

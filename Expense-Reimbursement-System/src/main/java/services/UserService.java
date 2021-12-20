@@ -110,6 +110,10 @@ public class UserService {
 
 
     public static Pair<Boolean, String> verifyUserFields(User user) {
+
+        if((user.getUsername() == null) || (user.getPassword() == null) || (user.getEmail() == null) || (user.getFirst_name() == null))
+            return new Pair<>(Boolean.FALSE, "400");
+
         if ((user.getUsername() != null) & (user.getUsername().length() > MAX_LENGTH_OF_USERNAME))
             return new Pair<>(Boolean.FALSE, "400 Length of username should not exceed 50 characters");
 

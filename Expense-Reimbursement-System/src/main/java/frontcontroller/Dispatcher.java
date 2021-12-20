@@ -26,6 +26,11 @@ public class Dispatcher {
 
             path("/reimb", () -> {
                 get(reimbursementController::getAllReimbursements);
+
+                path("/decided", () -> {
+                    get(reimbursementController::getPastReimbursements);
+                });
+
                 path("/{reimb_id}", () -> {
                     patch(reimbursementController::updateReimbursement);
                 });

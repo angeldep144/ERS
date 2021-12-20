@@ -20,3 +20,36 @@
   Position: 40
 2021-12-17 04:12:20 ERROR ReimbursementDaoImpl:148 - org.postgresql.util.PSQLException: No results were returned by the query.
 2021-12-17 04:12:44 ERROR ReimbursementDaoImpl:148 - org.postgresql.util.PSQLException: No results were returned by the query.
+2021-12-18 17:23:41 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:23:41 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:54:33 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:54:33 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:56:31 ERROR UserDaoImpl:188 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:56:36 ERROR UserDaoImpl:188 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 17:56:51 ERROR UserDaoImpl:188 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:02:43 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:02:43 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:03:37 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:03:37 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:05:54 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-18 18:05:54 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:24:02 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:26:00 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:32:36 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:33:08 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:41:31 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:58:10 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 00:58:43 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 01:01:46 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 01:08:47 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.
+2021-12-20 01:11:24 ERROR UserDaoImpl:78 - org.postgresql.util.PSQLException: The connection attempt failed.

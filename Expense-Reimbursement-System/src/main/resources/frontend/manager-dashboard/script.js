@@ -18,15 +18,7 @@ window.onload = async () => {
 
 
     populateReimbursements();
-}
-
-var _resolver_id = getId();
-
-async function getID(){
-    let response = await fetch("http://localhost:9000/ers/check-session");
-    let result = await response.json();
-
-    return result.data.id; // resolver id gotten from current session
+    populateReimbursements2();
 }
 
 async function populateReimbursements(){
@@ -45,9 +37,10 @@ async function populateReimbursements(){
             <td class="reimb-author">${reimb.author}</td>
             <td class="reimb-amount">$${reimb.amount}</td>
             <td class="reimb-type">${reimb.type}</td>
-            <td class="reimb-status">${reimb.status}</td>
 
             <td class="reimb-description">${reimb.description == null ? "-" : reimb.description}</td>
+
+            <td class="reimb-status">${reimb.status}</td>
 
             <td class="reimb-receipt">${reimb.receipt == null ? "-" : `<img src= ${reimb.receipt} />`}</td>
             
@@ -61,7 +54,36 @@ async function populateReimbursements(){
     });
 }
 
+async function populateReimbursements2(){
+    let response = await fetch(`${domain}/ers/reimb/decided`);
+    let data = await response.json();
+
+    let reimbTableBody = document.getElementById('reimb-tbody-all')
+    reimbTableBody.innerHTML = "";
+
+    data.forEach(reimb => {
+        reimbTableBody.innerHTML += `
+        <tr class="reimbursement" id="${reimb.id}-decided">
+
+            <th scope="row" value="@item.QueueName">${reimb.id}</th>
+            <td class="time-submitted">${reimb.submitted}</td>
+            <td class="reimb-author">${reimb.author}</td>
+            <td class="reimb-amount">$${reimb.amount}</td>
+            <td class="reimb-type">${reimb.type}</td>
+            <td class="reimb-description">${reimb.description == null ? "-" : reimb.description}</td>
+            <td class="reimb-status-${reimb.status == "APPROVED" ? 1 : 2}">${reimb.status}</td>
+            <td class="reimb-resolver">${reimb.resolver == null ? "-" : reimb.resolver}</td>
+        </tr>
+        `
+    });
+}
+
 async function approve(e) {
+    let response = await fetch("http://localhost:9000/ers/check-session");
+    let result = await response.json();
+
+    let _resolver_id = result.data.id; // resolver id gotten from current session
+
     let _reimb_id = e.target.id.slice("approve-btn-".length,e.target.id.length) // id of reimbursement gotten from button
     
     // debugging
@@ -77,9 +99,15 @@ async function approve(e) {
     })
 
     populateReimbursements();
+    populateReimbursements2();
 }
 
 async function reject(e) {
+    let response = await fetch("http://localhost:9000/ers/check-session");
+    let result = await response.json();
+
+    let _resolver_id = result.data.id; // resolver id gotten from current session
+
     let _reimb_id = e.target.id.slice("reject-btn-".length,e.target.id.length) // id of reimbursement gotten from button
     
     // debugging
@@ -95,6 +123,7 @@ async function reject(e) {
     })
 
     populateReimbursements();
+    populateReimbursements2();
 }
 
 

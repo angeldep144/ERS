@@ -23,15 +23,13 @@ public class ReimbursementDTO {
 
     public ReimbursementDTO(){}
 
-    public ReimbursementDTO(Reimbursement reimb, String author, String resolver){
+    public ReimbursementDTO(Reimbursement reimb){
         this.id = reimb.getReimb_id();
         this.amount = reimb.getAmount();
         this.submitted = reimb.getDate_submitted();
-        this.resolved = reimb.getDate_resolved(); //== null ? null : localDateFromTimestamp(reimb.getDate_resolved());
+        this.resolved = reimb.getDate_resolved();
         this.description = reimb.getDescription();
         this.receipt = reimb.getReceipt();
-        this.author = author;
-        this.resolver = resolver;
         this.status = resolveStatusId(reimb.getStatus_id());
         this.type = resolveTypeId(reimb.getType_id());
     }
@@ -46,7 +44,7 @@ public class ReimbursementDTO {
                 break;
 
             case 2:
-                result = "DENIED";
+                result = "REJECTED";
                 break;
 
             default:
@@ -61,15 +59,19 @@ public class ReimbursementDTO {
 
         switch (type_id) {
             case 1:
-                result = "TRAVEL";
+                result = "LODGING";
                 break;
 
             case 2:
-                result = "TRAINING";
+                result = "TRAVEL";
+                break;
+
+            case 3:
+                result = "FOOD";
                 break;
 
             default:
-                result = "MEDICAL";
+                result = "OTHER";
         }
         return result;
     }

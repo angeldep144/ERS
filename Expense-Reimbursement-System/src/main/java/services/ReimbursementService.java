@@ -25,6 +25,7 @@ public class ReimbursementService {
     }
     public ReimbursementService(ReimbursementDao reimbDao) {
         this.reimbDao = reimbDao;
+        this.userDao = new UserDaoImpl();
     }
 
     // CREATE
@@ -55,19 +56,38 @@ public class ReimbursementService {
         User author = userDao.getUser(reimb.getAuthor_id());
         User resolver = userDao.getUser(reimb.getResolver_id());
 
-        String author_name;
-        String resolver_name = "";
+        if (author == null)
+            return new Pair<>(Boolean.FALSE, null);
 
-        if (resolver != null)
-            resolver_name = resolver.getFirst_name() + " " + resolver.getLast_name();
+        ReimbursementDTO _reimb = new ReimbursementDTO(reimb);
+        _reimb.setAuthor(author.getFullName());
 
-        author_name = author.getFirst_name() + " " + author.getLast_name();
+        if (resolver == null)
+            return new Pair<>(Boolean.TRUE, _reimb);
 
-        return new Pair<>(Boolean.TRUE, new ReimbursementDTO(reimb, author_name, resolver_name));
+        _reimb.setResolver(resolver.getFullName());
+        return new Pair<>(Boolean.TRUE, _reimb);
     }
 
     public Pair<Boolean, List<ReimbursementDTO>> getAllReimbursements() {
         List<Reimbursement> reimb = reimbDao.getAllReimbursements();
+
+        // check if history of reimbursement data exists
+        if(reimb.isEmpty())
+            return new Pair<>(Boolean.FALSE, new ArrayList<>());
+
+        List<ReimbursementDTO> reimbList = new ArrayList<>();
+
+        // add all reimbursements to ReimbursementDTO list
+        for(Reimbursement r : reimb){
+            reimbList.add(getReimbursement(r.getReimb_id()).getSecond());
+        }
+
+        return new Pair<>(Boolean.TRUE, reimbList);
+    }
+
+    public Pair<Boolean, List<ReimbursementDTO>> getPastReimbursements() {
+        List<Reimbursement> reimb = reimbDao.getPastReimbursements();
 
         // check if history of reimbursement data exists
         if(reimb.isEmpty())
@@ -138,8 +158,10 @@ public class ReimbursementService {
     public Pair<Boolean, String> verifyReimbursementFields(Reimbursement reimb) {
         if(reimb == null)
             return new Pair<>(Boolean.FALSE, "404 No reimbursement object found");
+
         if(userDao.getUser(reimb.getAuthor_id()) == null)
             return new Pair<>(Boolean.FALSE, "404 No such user with ID " +reimb.getAuthor_id()+ " exists");
+
         if(reimb.getDescription().length() > MAX_DESCRIPTION_LENGTH)
             return new Pair<>(Boolean.FALSE, "400 Descriptiom is too long. Should be maximum " + MAX_DESCRIPTION_LENGTH + " characters");
 
