@@ -18,7 +18,5 @@ Sole Developer
 
 ## Getting Started
 
-git pull https://github.com/angeldep144/ERS
-
-Switch to the Expense-Reimbursement-System directory and open with your IDE.
-Run the project and open on http://localhost:9000
+After pulling the repository from github, switch to the Expense-Reimbursement-System directory and open with your IDE.
+Run the project and navigate to http://localhost:9000 on your preferred web browser.
