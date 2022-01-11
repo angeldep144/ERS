@@ -18,5 +18,7 @@ Sole Developer
 
 ## Getting Started
 
+
+## Opening the Expense Reimbursement System application
 After pulling the repository from github, switch to the Expense-Reimbursement-System directory and open with your IDE.
 Run the project and navigate to http://localhost:9000 on your preferred web browser.
