@@ -24,9 +24,6 @@ Requested data in form of JSON from backend using Fetch.
 * Selenium
 
 ## Getting Started
-
-
-## Running the Expense Reimbursement System application
 After pulling the repository from github, set up environment variables to connect project to your database.
 * AWS_RDS_ENDPOINT
 * RDS_USERNAME
